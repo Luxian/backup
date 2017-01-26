@@ -20,3 +20,8 @@ and will place the backup file in `/path/to/backups`.
 - a `sql` directory will be created inside $BACKUP_DIR and removed completely
 afterwards regardless if existed before or not
 - add a verbose mode to debug (even add a log into the final archive?)
+
+# Credits
+This script was inspired by [A Shell Script for a Complete WordPress Backup](http://theme.fm/a-shell-script-for-a-complete-wordpress-backup/) but
+modified heavily to work on OS X Sierra (special tar version) and to get the
+database password automatically from `wp-config.php`.
