@@ -16,7 +16,7 @@ Simple shell script that genereates a `tar.gz` file with a complete backup of a 
 This will backup the WordPress installation with the web root directory `/var/www/example.com`
 and will place the backup file in `/path/to/backups`.
 
-# Notes && todo:
-- a `sql` directory will be created inside $BACKUP_DIR and remove it completely
-regardless if existed before or not
+# Notes & todo:
+- a `sql` directory will be created inside $BACKUP_DIR and removed completely
+afterwards regardless if existed before or not
 - add a verbose mode to debug (even add a log into the final archive?)
