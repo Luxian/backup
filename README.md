@@ -11,9 +11,10 @@ Simple shell script that genereates a `tar.gz` file with a complete backup of a 
 
 # Usage:
 ```bash
-cd /var/www/example.com && BACKUP_DIR=/tmp ./backup.sh
+(export BACKUP_DIR=/path/to/backups; cd /var/www/example.com; bash /path/to/script/backup.sh)
 ```
 This will backup the WordPress installation with the web root directory `/var/www/example.com`
+and will place the backup file in `/path/to/backups`.
 
 # Notes && todo:
 - a `sql` directory will be created inside $BACKUP_DIR and remove it completely
