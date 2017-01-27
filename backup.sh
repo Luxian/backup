@@ -54,6 +54,15 @@ if [ ! -f 'wp-config.php' ]
     exit 1;
 fi;
 
+# Check if configuration file contains php closing tags
+# PHP closing tags don't work with current method of
+# extracting database credentials and are not recommended
+if cat 'wp-config.php' | grep -q '?>'
+  then
+    echo 'Error: wp-config.php contains PHP closing tags ?>. Please remove them' 1>&2;
+    exit 1;
+fi;
+
 # Variables
 SITENAME="lopan.ch";
 NOW=$(date +"%Y-%m-%d-%H%M");
