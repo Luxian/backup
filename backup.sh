@@ -90,6 +90,7 @@ tar \
   --exclude=.git \
   --exclude=.svn \
   --exclude=cgi-bin \
+  --exclude=wp-content/updraft \
   -cf $BACKUP_DIR/$FILE .
 
 # Create a directory for the SQL dump
