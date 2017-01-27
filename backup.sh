@@ -63,6 +63,9 @@ if cat 'wp-config.php' | grep -q '?>'
     exit 1;
 fi;
 
+# Remove trailing / from BACKUP_DIR
+BACKUP_DIR=${BACKUP_DIR%/};
+
 # Variables
 SITENAME="lopan.ch";
 NOW=$(date +"%Y-%m-%d-%H%M");
@@ -108,7 +111,7 @@ tar \
   -rf $BACKUP_DIR/$FILE sql/
 
 # Remove the sql file and folder since it's added to archive
-rm -rf "$BACKUP_DIR/sql"
+rm -rf "${BACKUP_DIR}/sql"
 
 # Compress the archive
 # --best: best compressiong level
@@ -116,14 +119,14 @@ rm -rf "$BACKUP_DIR/sql"
 gzip --best --force $BACKUP_DIR/$FILE;
 
 # Print the backup file name
-if [ -f "$BACKUP_DIR/$FILE.gz" ]
+if [ -f "${BACKUP_DIR}/${FILE}.gz" ]
   then
-    echo "$BACKUP_DIR/$FILE.gz";
-  elif [ -f $BACKUP_DIR/$FILE ]
+    echo "${BACKUP_DIR}/${FILE}.gz";
+  elif [ -f "{$BACKUP_DIR}/{$FILE}" ]
     then
-      echo $BACKUP_DIR/$FILE;
+      echo "${BACKUP_DIR}/${FILE}";
   else
-    echo "Backup file it's missing: $BACKUP_DIR/$FILE[.gz]" 1>&2;
+    echo "Backup file it's missing: ${BACKUP_DIR}/${FILE}[.gz]" 1>&2;
     exit 1;
 fi
 
