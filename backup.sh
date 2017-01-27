@@ -93,7 +93,13 @@ tar \
 mkdir -p "$BACKUP_DIR/sql";
 # Call mysqldump and ignore errors
 # For example: 'Warning: Using a password on the command line ...
-mysqldump --user="$WPDB_USER" --password="$WPDB_PASS" --host="$WPDB_HOST" $DB_NAME > "$BACKUP_DIR/sql/$WPDB_FILE" 2>/dev/null
+mysqldump \
+  --user="$WPDB_USER" \
+  --password="$WPDB_PASS" \
+  --host="$WPDB_HOST" \
+  $WPDB_NAME \
+  > "$BACKUP_DIR/sql/$WPDB_FILE" \
+  2>/dev/null;
 
 # Add SQL dump to the archive
 tar \
