@@ -64,6 +64,7 @@ WWW_DIR=$(pwd);
 DB_USER=$(echo "`cat wp-config.php`; echo DB_USER;" | php -d error_reporting=0);
 DB_PASS=$(echo "`cat wp-config.php`; echo DB_PASSWORD;" | php -d error_reporting=0);
 DB_NAME=$(echo "`cat wp-config.php`; echo DB_NAME;" | php -d error_reporting=0);
+DB_HOST=$(echo "`cat wp-config.php`; echo DB_HOST;" | php -d error_reporting=0);
 DB_FILE="$SITENAME.$NOW.sql"
 
 # Archive all the www folder
@@ -83,7 +84,7 @@ tar \
 mkdir -p "$BACKUP_DIR/sql";
 # Call mysqldump and ignore errors
 # For example: 'Warning: Using a password on the command line ...
-mysqldump -u$DB_USER -p$DB_PASS $DB_NAME > "$BACKUP_DIR/sql/$DB_FILE" 2>/dev/null
+mysqldump --user="$DB_USER" --password="$DB_PASS" --host="$DB_HOST" $DB_NAME > "$BACKUP_DIR/sql/$DB_FILE" 2>/dev/null
 
 # Add SQL dump to the archive
 tar \
@@ -92,7 +93,7 @@ tar \
   -rf $BACKUP_DIR/$FILE sql/
 
 # Remove the sql file and folder since it's added to archive
-rm -rf $BACKUP_DIR/sql
+rm -rf "$BACKUP_DIR/sql"
 
 # Compress the archive
 # --best: best compressiong level
