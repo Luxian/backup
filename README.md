@@ -2,10 +2,10 @@
 Simple shell script that genereates a `tar.gz` file with a complete backup of a Wordpress site (code, uploads, database)
 
 # Requirements
-- php-cli: used to read the `wp-config.php` file and extract database credentials
-- mysqldump: to generate database dump
-- tar: used to archive everything in one file
-- gzip: compress final archive
+- `php-cli`: used to read the `wp-config.php` file and extract database credentials
+- `mysqldump`: to generate database dump
+- `tar`: used to archive everything in one file
+- `gzip`: compress final archive
 - `$BACKUP_DIR`: bash variable to specify where the backup should be put
 - `wp-config.php` cannot contain `?>` (which is actually recommended in this [official php note](http://php.net/basic-syntax.instruction-separation))
 
